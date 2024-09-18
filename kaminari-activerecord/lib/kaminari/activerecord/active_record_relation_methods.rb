@@ -33,7 +33,7 @@ module Kaminari
       c = c.limit(max_pages * limit_value) if max_pages && max_pages.respond_to?(:*)
 
       # .group returns an OrderedHash that responds to #count
-      c = c.async_count(column_name)
+      c = c.count(column_name)
       @total_count = if c.is_a?(Hash) || c.is_a?(ActiveSupport::OrderedHash)
                        c.count
                      elsif c.respond_to? :count
