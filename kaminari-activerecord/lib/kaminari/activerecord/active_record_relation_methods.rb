@@ -35,9 +35,9 @@ module Kaminari
       # .group returns an OrderedHash that responds to #count
       c = c.count(column_name)
       @total_count = if c.is_a?(Hash) || c.is_a?(ActiveSupport::OrderedHash)
-                       c.count
+                       c.async_count
                      elsif c.respond_to? :count
-                       c.async_count(column_name)
+                       c.count(column_name)
                      else
                        c
                      end
